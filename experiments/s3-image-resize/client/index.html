@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script>
+    function supportMultiple() {
+        //do I support input type=file/multiple
+        var el = document.createElement("input");
+
+        return ("multiple" in el);
+    }
+
+    function init() {
+        if(supportMultiple()) {
+            document.querySelector("#multipleFileLabel").setAttribute("style","");
+        }
+    }
+</script>
+</head>
+
+<body onload="init()">
+
+    <form action="http://127.0.0.1:8000/upload/local-test" method="post" enctype="multipart/form-data">
+        <div>
+            <label for="path">Upload Path</label>
+            <input id="path" type="text" name="path">
+        </div>
+        
+        <div>
+            <label for="files">
+                <span id="multipleFileLabel" style="display:none">Multiple </span>File:
+            </label>
+            
+            <input type="file" name="files" multiple="multiple"><br/>
+        </div>
+        
+        <input type="submit" value="Upload">
+    </form>
+
+</body>
+</html>
